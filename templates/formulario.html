@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/pulse/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for ('static',filename = 'styles.css')}}">
+</head>
+<body>
+
+    <div >
+        <form action="/log" method="GET">
+            <label for="temperatura">temperatura</label>
+            <input type="text" id="temperatura" name="temperatura"><br/>
+
+            <label for="humedad">humedad</label>
+            <input type="text" id="humedad" name="humedad"><br/>
+
+            <label for="tiempo">tiempo</label>
+            <input type="text" id="tiempo" name="tiempo"><br/>
+
+
+            <input type="submit" value="Enviar" />
+
+            <a href="/return-file" target="=blank">
+            <button class="btn btn-default"> descargar</button>
+            </a>
+        
+        
+        
+        </form>
+
+
+    </div>
+        
+     
+    
+</body>
+</html>
