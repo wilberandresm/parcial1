@@ -1,9 +1,10 @@
 from flask import Flask,render_template,escape,request,jsonify
-from flask_sqlalchemy import SQLAlchemy  
+
 from flask import send_file,request     
 from flask import make_response,send_file
 import os
 import time
+import datetime
 import pandas as pd
 
 app=Flask(__name__)
@@ -11,19 +12,25 @@ app=Flask(__name__)
 @app.route('/')
 def index():
 
-    tiempo_actual = time.strftime("%c")
-    data = {'fecha':[tiempo_actual], 'tiempo': [2.22], 'temperatura': [22.7], 'humedad': [33.2]}
-    df = pd.DataFrame(data, columns= ['fecha', 'tiempo', 'temperatura', 'humedad'])
-    df.to_csv("09052019.csv")
     return render_template('index.html')    
-    
+def archivo(tiempo,temperatura,humedad,marca_tiempo):
+    hora= time.localtime()
+    horaT= time.strftime("%H:%M:%S", hora)
+    print(horaT)
+    datos=open("09052019.csv","a+")
+    datos.write("\r\n"+horaT+", "+tiempo+", "+ tiempo+ ", "+ humedad+", "+marca_tiempo )
+    datos.close()
+
+
 
 @app.route('/log',methods= ['GET'])
 def lista(): 
     try:
-        temperatura=request.args.GET('temperatura')
-        humedad=request.args.GET('humedad')
-        tiempo=request.args.GET('tiempo')
+        temperatura=request.form.get('temperatura')
+        humedad=request.form.get('humedad')
+        tiempo=request.form.get('tiempo')
+        marca_tiempo=datatime.now().strftime("%Y-%m-%d %H:%M:%S" )
+        archivo(temperatura,humedad,tiempo,marca_tiempo)
     except:
         return render_template('formulario.html')
 
